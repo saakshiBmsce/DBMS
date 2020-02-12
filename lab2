@@ -1,0 +1,58 @@
+create database Bank;
+use Bank;
+create table branch(
+branch_name varchar(20),
+branch_city varchar(20),
+assets int,
+primary key(branch_name)
+);
+create table accounts(
+account_no int,
+branch_name varchar(20),
+balance real,
+primary key(account_no),
+foreign key(branch_name) references branch(branch_name)
+);
+
+create table depositor(
+customer_name varchar(20),
+customer_street varchar(20),
+customer_city varchar(20),
+primary key(customer_name)
+);
+create table Loan(
+loan_number int,
+branch_name varchar(20),
+amount real,
+primary key(loan_number),
+foreign key(branch_name) references branch(branch_name)
+);
+
+create table borrower(
+customer_name varchar(20),
+loan_number int,
+foreign key(customer_name) references depositor(customer_name),
+foreign key(loan_number) references Loan(loan_number)
+);
+create table customer(
+customer_name varchar(20),
+account_no int,
+foreign key(customer_name) references depositor(customer_name),
+foreign key(account_no) references accounts(account_no)
+);
+insert into account values('branch_name32','branch_city3',300000);
+select * from branch;
+insert into accounts values(66666,'branch_name22',666);
+select * from accounts;
+insert into depositor values('cust5','street5','city5');
+select * from depositor;
+insert into Loan values(32,'branch_name32',320000);
+select * from loan;
+insert into borrower values('cust4',32);
+select * from borrower;
+select * from depositor ;
+insert into customer values('cust4',66666);
+select * from customer;
+select * from customer c,depositor r,accounts a,branch b
+	where b.city='branch_ty1',
+    
